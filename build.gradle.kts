@@ -11,17 +11,27 @@ catalog {
 
 group = "com.thoughtworks.ark"
 
+fun readConfig(name: String): String {
+    return project.properties[name] as String? ?: System.getenv(name) ?: ""
+}
 
 publishing {
+    repositories {
+        maven {
+            url = uri(readConfig("MAVEN_REPO"))
+            isAllowInsecureProtocol = true
+            credentials {
+                username = readConfig("MAVEN_USER")
+                password = readConfig(("MAVEN_PWD"))
+            }
+        }
+    }
+
     publications {
         create<MavenPublication>("libs") {
             from(components["versionCatalog"])
-            artifact(file("${buildDir.path}/version-catalog/libs.versions.toml")) {
-                classifier = "versions"
-                extension = "toml"
-            }
-//            groupId = "com.thoughtworks.ark"
-//            artifactId = "VersionCatalog"
+            groupId = "com.thoughtworks.ark"
+            artifactId = "versioncatalog"
             version = "1.0-SNAPSHOT"
         }
     }
