@@ -28,11 +28,18 @@ publishing {
     }
 
     publications {
-        create<MavenPublication>("libs") {
+        create<MavenPublication>("snapshot") {
             from(components["versionCatalog"])
             groupId = "com.thoughtworks.ark"
             artifactId = "versioncatalog"
-            version = "1.0-SNAPSHOT"
+            version = "1.0.0-SNAPSHOT"
+        }
+
+        create<MavenPublication>("release") {
+            from(components["versionCatalog"])
+            groupId = "com.thoughtworks.ark"
+            artifactId = "versioncatalog"
+            version = "1.0.0"
         }
     }
 }

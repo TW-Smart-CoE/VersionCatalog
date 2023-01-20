@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000432">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: export LC_ALL=en_US.UTF-8" time="0.012702">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: export LANG=en_US.UTF-8" time="0.01241">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: devDebugCoverage" time="29.285214">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

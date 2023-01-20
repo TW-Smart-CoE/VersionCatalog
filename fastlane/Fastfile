@@ -1,0 +1,14 @@
+desc "Publish snapshot"
+lane :publish_snapshot do
+  gradle(task: "publishSnapshotPublicationToMavenRepository")
+end
+
+desc "Publish release"
+lane :publish_release do
+  gradle(task: "publishReleasePublicationToMavenRepository")
+end
+
+before_all do |lane|
+  sh "export LC_ALL=en_US.UTF-8"
+  sh "export LANG=en_US.UTF-8"
+end
