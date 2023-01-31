@@ -11,8 +11,8 @@ catalog {
 
 group = "com.thoughtworks.ark"
 
-fun readConfig(name: String): String {
-    return project.properties[name] as String? ?: System.getenv(name) ?: ""
+fun readConfig(name: String, default: String = ""): String {
+    return project.properties[name] as String? ?: System.getenv(name) ?: default
 }
 
 publishing {
@@ -28,18 +28,16 @@ publishing {
     }
 
     publications {
-        create<MavenPublication>("snapshot") {
-            from(components["versionCatalog"])
-            groupId = "com.thoughtworks.ark"
-            artifactId = "versioncatalog"
-            version = "1.0.0-SNAPSHOT"
-        }
-
-        create<MavenPublication>("release") {
+        create<MavenPublication>("versionCatalog") {
             from(components["versionCatalog"])
             groupId = "com.thoughtworks.ark"
             artifactId = "versioncatalog"
             version = "1.0.0"
+
+            val newVersion = readConfig("publishVersion")
+            if (newVersion.isNotEmpty()) {
+                version = newVersion
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
-desc "Publish snapshot"
-lane :publish_snapshot do
-  gradle(task: "publishSnapshotPublicationToMavenRepository")
-end
+desc "Publish"
+lane :publish do |options|
+  publishVersion = options[:publishVersion]
 
-desc "Publish release"
-lane :publish_release do
-  gradle(task: "publishReleasePublicationToMavenRepository")
+  gradle(
+    task: "publish",
+    properties: {
+        "publishVersion" => publishVersion
+    }
+  )
 end
 
 before_all do |lane|

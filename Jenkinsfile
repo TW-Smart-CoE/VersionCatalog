@@ -7,6 +7,9 @@ pipeline {
         PATH = "$RUBY_HOME/bin:$PATH"
         LANG = "en_US.UTF-8"
     }
+    parameters {
+        string(name: 'PUBLISH_VERSION', defaultValue: '1.0.0', description: 'Publish version')
+    }
 
     stages{
         stage('Setup') {
@@ -22,10 +25,10 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Snapshot') {
+        stage('Deploy Dev') {
             steps {
                 script {
-                    sh 'bundle exec fastlane publish_snapshot'
+                    sh "bundle exec fastlane publish publishVersion:${params.PUBLISH_VERSION}-SNAPSHOT"
                 }
             }
         }
@@ -33,7 +36,7 @@ pipeline {
             when { branch pattern: "release(-v.+)?", comparator: "REGEXP"}
             steps {
                 script {
-                    sh 'bundle exec fastlane publish_release'
+                    sh "bundle exec fastlane publish publishVersion:${params.PUBLISH_VERSION}"
                 }
             }
         }
