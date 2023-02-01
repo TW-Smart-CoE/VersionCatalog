@@ -43,9 +43,7 @@ espresso-core = "3.5.1"
 
 # router
 router = "4354492b03"
-
-# ark
-ark = "feature~componentization-SNAPSHOT"
+router-plugin = "1.0.0"
 
 [libraries]
 # plugin
@@ -123,9 +121,6 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 router = { module = "com.github.TW-Smart-CoE.ARK-Android-Router:router", version.ref = "router" }
 router-compiler = { module = "com.github.TW-Smart-CoE.ARK-Android-Router:compiler", version.ref = "router" }
 
-# ark
-ark-ui = { module = "com.github.TW-Smart-CoE:ARK-Android", version.ref = "ark" }
-
 [bundles]
 compose = [
     "compose-activity",
@@ -192,4 +187,4 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-router = { id = "com.thoughtworks.ark.router", version.ref = "router" }
+router = { id = "io.github.ssseasonnn.router", version.ref = "router-plugin" }
