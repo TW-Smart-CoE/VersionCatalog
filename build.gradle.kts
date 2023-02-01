@@ -1,6 +1,7 @@
 plugins {
     `version-catalog`
     `maven-publish`
+    `signing`
 }
 
 catalog {
@@ -30,14 +31,39 @@ publishing {
     publications {
         create<MavenPublication>("versionCatalog") {
             from(components["versionCatalog"])
-            groupId = "com.thoughtworks.ark"
-            artifactId = "versioncatalog"
-            version = "1.0.0"
+            groupId = readConfig("MAVEN_GROUP_ID")
+            artifactId = "VersionCatalog"
+            version = readConfig("MAVEN_VERSION")
 
-            val newVersion = readConfig("publishVersion")
-            if (newVersion.isNotEmpty()) {
-                version = newVersion
+            pom {
+                name.set("VersionCatalog")
+                description.set("A lib for version management")
+                url.set("https://github.com/TW-Smart-CoE/VersionCatalog")
+
+                licenses {
+                    license {
+                        name.set("The Apache Software License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+
+                developers {
+                    developer {
+                        name.set("Zhang Guo")
+                        email.set("guo.zhang@thoughtworks.com")
+                    }
+                }
+
+                scm {
+                    connection.set("https://github.com/TW-Smart-CoE/VersionCatalog")
+                    developerConnection.set("https://github.com/TW-Smart-CoE/VersionCatalog.git")
+                    url.set("https://github.com/TW-Smart-CoE/VersionCatalog")
+                }
             }
         }
+    }
+
+    signing {
+        sign(publishing.publications)
     }
 }
