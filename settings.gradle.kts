@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -17,4 +19,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "VersionCatalog"
-enableFeaturePreview("VERSION_CATALOGS")

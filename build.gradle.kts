@@ -1,7 +1,7 @@
 plugins {
     `version-catalog`
     `maven-publish`
-    `signing`
+    signing
 }
 
 catalog {
